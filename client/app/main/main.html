@@ -36,13 +36,19 @@
         </div>
       </div>
 
+      <!-- EDITOR MENU SECTION-->
       <div class="row">
         <div class="col-xs-12">
 
-          <span id="format">Reformat</span> | <span id="minify">Minify</span>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Wrap Code
+            </label>
+          </div>
 
         </div>
       </div>
+      <!-- END EDITOR MENU -->
 
       <div class="row">
         <div class="col-xs-12">
@@ -56,25 +62,7 @@
 
     <div class="col-md-6">
 
-      <div class="row">
-        <div class="col-xs-12">
-          <h2>OBJECT VIEWER</h2>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-<!--          {{myJSON}}
-          <ul>
-            <li ng-repeat="(key, value) in myJSONObj">
-              {{key}}
-              <ul ng-if="myJSONObj.key">
-
-              </ul>
-            </li>
-          </ul>-->
-        </div>
-      </div>
+      <div ng-include="'components/object-viewer/object-viewer.html'"></div>
 
     </div>
 

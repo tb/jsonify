@@ -7,10 +7,12 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 $default-font: Helvetica, arial, freesans, clean, sans-serif;
 $global-background-color: white;
 $global-font-color: #1a1a1a;
+$default-font-size: 16px;
 
 body, html {
   background-color: $global-background-color;
   color: $global-font-color;
+  font-size: $default-font-size;
 }
 
 .CodeMirror {
@@ -33,4 +35,5 @@ body, html {
 @import 'admin/admin.scss';
 @import 'main/main.scss';
 @import '../components/modal/modal.scss';
+@import '../components/object-viewer/object-viewer.scss';
 // endinjector

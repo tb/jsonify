@@ -1,0 +1,25 @@
+<div ng-controller="ObjectViewerCtrl">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>OBJECT VIEWER</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+        {{json_obj}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+
+      <ul>
+        <li ng-repeat="(key, value) in json_obj"
+            ng-include="'components/object-viewer/recursive-object-viewer.html'">
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
