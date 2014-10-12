@@ -17,3 +17,4 @@ angular.module 'jsonifyApp'
   $scope.isObject = ObjectViewer.isObject
   $scope.isArray = ObjectViewer.isArray
   $scope.isFunction = ObjectViewer.isFunction
+  $scope.getName = ObjectViewer.getName

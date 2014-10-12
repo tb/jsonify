@@ -1,9 +1,16 @@
-{{key}}, <span ng-if="isObject(value)">Object!</span><span ng-if="isArray(value)">Array!</span>
-<ul ng-if="isObject(value)">
-  <li ng-repeat="(key, value) in value" ng-include="'components/object-viewer/recursive-object-viewer.html'">
-  </li>
-</ul>
-<ul ng-if="isArray(value)">
-  <li ng-repeat="val in value" ng-include="'components/object-viewer/recursive-object-viewer.html'">
-  </li>
-</ul>
+<div ng-controller="CollapseCtrl">
+  <div ng-click="isCollapsed = !isCollapsed">
+    <span>{{key}} {{}}</span>
+    <span>{{getName(value)}}</span>
+  </div>
+  <div collapse="isCollapsed">
+    <ul ng-if="isObject(value)">
+      <li ng-repeat="(key, value) in value" ng-include="'components/object-viewer/recursive-object-viewer.html'">
+      </li>
+    </ul>
+    <ul ng-if="isArray(value)">
+      <li ng-repeat="val in value" ng-include="'components/object-viewer/recursive-object-viewer.html'">
+      </li>
+    </ul>
+  </div>
+</div>

@@ -17,10 +17,17 @@ angular.module 'jsonifyApp'
   toString = Object.prototype.toString
 
   isObject: (obj) ->
-    return obj == Object(obj)
+    return obj == (Object obj)
 
   isArray: (obj) ->
-    return toString.call(obj) == '[object Array]'
+    return (toString.call obj) == '[object Array]'
 
   isFunction: (obj) ->
-    return toString.call obj == '[object Function]'
+    return (toString.call obj) == '[object Function]'
+
+  getName: (obj) ->
+    name = undefined
+    if obj is null
+      name = '[object Null]'
+    name = toString.call obj
+    return (name.replace '[object ', '').replace ']', ''
