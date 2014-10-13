@@ -111,8 +111,13 @@ angular.module 'jsonifyApp'
       alert e.status
       return
 
+  request = () ->
+    alert 'This feature is being developed right now. Please check back later.'
+
   initialize();
 
   $scope.onCodemirrorLoaded = onCodemirrorLoaded
   $scope.save = saveJSON
   $scope.new = newJSON
+  $scope.request = request;
+  $scope.share = request;
