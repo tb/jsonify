@@ -1,7 +1,7 @@
 ul.object-viewer {
   list-style: none;
   font-family: 'Inconsolata';
-  font-size: 20px;
+  font-size: 16px;
   height: 600px;
   overflow: auto;
   border-left: 6px solid rgba(0, 83, 159, 0.65);
@@ -41,6 +41,10 @@ ul.object-viewer {
 
   .number-value {
     color: $number-color;
+  }
+
+  .boolean-value {
+    color: #a67f59;
   }
 
   .object-type {

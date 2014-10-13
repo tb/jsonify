@@ -15,6 +15,8 @@
       </span>
       <span ng-switch-when="String" class="string-value">"{{value}}"</span>
       <span ng-switch-when="Number" class="number-value">{{value}}</span>
+      <span ng-switch-when="Boolean" class="boolean-value">{{value}}</span>
+      <span ng-switch-default>null</span>
     </span>
   </div>
   <div collapse="isCollapsed">

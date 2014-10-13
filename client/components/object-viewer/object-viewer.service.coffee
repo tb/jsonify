@@ -37,7 +37,7 @@ angular.module 'jsonifyApp'
     else if name is 'Object'
       return getObjectKeyCount obj
     else
-      return null
+      return name
 
   ###
   @method getName
@@ -48,5 +48,6 @@ angular.module 'jsonifyApp'
     name = undefined
     if obj is null
       name = '[object Null]'
-    name = toString.call obj
+    else
+      name = toString.call obj
     return (name.replace '[object ', '').replace ']', ''
