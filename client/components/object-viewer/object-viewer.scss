@@ -1,9 +1,49 @@
-ul {
+ul.object-viewer {
   list-style: none;
-  padding-left: 0px;
+  font-family: 'Inconsolata';
+  font-size: 20px;
+  height: 600px;
+  overflow: auto;
+  border-left: 6px solid rgba(0, 83, 159, 0.65);
+  background: $editor-background;
+  color: #999;
+  border-right: 1px solid #dde4e9;
+  border-top: 1px solid #dde4e9;
+  border-bottom: 1px solid #dde4e9;
+  padding: 5px 5px 5px 0px;
 
   ul {
     list-style: none;
     padding-left: 20px;
+  }
+
+  .collapse-toggle {
+    cursor: pointer;
+  }
+
+  .object-icon, .object-name, .child-count, .object-type, .object-value {
+    display: inline-block;
+  }
+
+  .object-icon {
+    width: 5px;
+    margin-left: 20px;
+    margin-right: 10px;
+  }
+
+  .object-name {
+    color: $property-color;
+  }
+
+  .string-value {
+    color: $string-color;
+  }
+
+  .number-value {
+    color: $number-color;
+  }
+
+  .object-type {
+    color: #690;
   }
 }

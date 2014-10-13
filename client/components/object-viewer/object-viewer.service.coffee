@@ -3,7 +3,6 @@
 # ==========================================================================
 # 10/11/2014 - WonSong (http://wys.io)
 # - Created initial file.
-# - Added formatJSON(), minifyJSON(), isValidJSON(), and convertJSON() methods
 # ==========================================================================
 
 'use strict'
@@ -13,6 +12,12 @@
 ###
 angular.module 'jsonifyApp'
 .factory 'ObjectViewer', () ->
+
+  getObjectKeyCount = (obj) ->
+    count = 0
+    for key of obj
+      count++  if obj.hasOwnProperty(key) and key.indexOf("$$") is -1
+    return count
 
   toString = Object.prototype.toString
 
@@ -25,7 +30,21 @@ angular.module 'jsonifyApp'
   isFunction: (obj) ->
     return (toString.call obj) == '[object Function]'
 
-  getName: (obj) ->
+  getValueCount: (obj) ->
+    name = this.getTypeName obj
+    if name is 'Array'
+      return obj.length
+    else if name is 'Object'
+      return getObjectKeyCount obj
+    else
+      return null
+
+  ###
+  @method getName
+  @param obj {Object} Object to get type name
+  @return {String} Type name in string
+  ###
+  getTypeName: (obj) ->
     name = undefined
     if obj is null
       name = '[object Null]'

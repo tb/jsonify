@@ -5,7 +5,7 @@
   <div class="row" ng-if="isValid && !errorMessage && myJSON.length > 0">
     <div class="col-md-12">
       <alert type="success">
-        Valid JSON!
+        JSON Validated!
       </alert>
     </div>
   </div>
@@ -14,7 +14,7 @@
   <div class="row" ng-if="isValid && !errorMessage && myJSON.length == 0">
     <div class="col-md-12">
       <alert type="warning">
-        Please enter JSON
+        Please enter JSON.
       </alert>
     </div>
   </div>
@@ -22,7 +22,7 @@
   <div class="row" ng-if="!isValid">
     <div class="col-md-12">
       <alert type="danger">
-        {{errorMessage}}
+        Error! {{errorMessage}}.
       </alert>
     </div>
   </div>
@@ -31,24 +31,14 @@
     <div class="col-md-6">
 
       <div class="row">
-        <div class="col-xs-12">
-          <h2>EDITOR</h2>
-        </div>
-      </div>
-
-      <!-- EDITOR MENU SECTION-->
-      <div class="row">
-        <div class="col-xs-12">
-
-          <div class="checkbox">
+        <div class="col-xs-12 text-right">
+          <div class="checkbox margin-0 height-32">
             <label>
-              <input type="checkbox"> Wrap Code
+              <input type="checkbox"/> Word Wrap
             </label>
           </div>
-
         </div>
       </div>
-      <!-- END EDITOR MENU -->
 
       <div class="row">
         <div class="col-xs-12">
@@ -69,4 +59,17 @@
   </div>
 </div>
 
-<footer></footer>
+<footer class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 text-right">
+      <p>
+        Project by <a href="http://wys.io">Won Song</a>
+        <br/>
+        <small>
+          "Unlimited Ideas and an Uncontrollable Urge to Code"<br/>
+          Visit me at <a href="http://wys.io">http://wys.io</a>
+        </small>
+      </p>
+    </div>
+  </div>
+</footer>

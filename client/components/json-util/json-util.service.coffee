@@ -3,7 +3,7 @@
 # ==========================================================================
 # 10/11/2014 - WonSong (http://wys.io)
 # - Created initial file.
-# - Added formatJSON(), minifyJSON(), and validateJSON() methods
+# - Added formatJSON(), minifyJSON(), validateJSON() methods
 # ==========================================================================
 
 'use strict'
@@ -22,7 +22,10 @@ angular.module 'jsonifyApp'
   @return {String} Formatted JSON string
   ###
   formatJSON: (unformatted_json) ->
-    return JSON.stringify JSON.parse(unformatted_json), null, 2
+    if unformatted_json.length > 0
+      return JSON.stringify JSON.parse(unformatted_json), null, 2
+    else
+      return ''
 
   ###
   Minifies and returns the {json} string

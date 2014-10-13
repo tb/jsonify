@@ -4,30 +4,37 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import '../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 @import '../bower_components/font-awesome/scss/font-awesome';
 
+/* =========================================================================
+CONFIGS
+========================================================================= */
 $default-font: Helvetica, arial, freesans, clean, sans-serif;
-$global-background-color: white;
+$global-background-color: #f4f7f8;
 $global-font-color: #1a1a1a;
 $default-font-size: 16px;
 
+/* =========================================================================
+EDITOR CONFIGS
+========================================================================= */
+$property-color: #905 !important;
+$string-color: #07a !important;
+$editor-background: #fafbfc url("../assets/images/blueprint-dark.png") top center !important;
+$number-color: #ca7841 !important;
+
+/* =========================================================================
+GLOBAL STYLES
+========================================================================= */
 body, html {
   background-color: $global-background-color;
   color: $global-font-color;
   font-size: $default-font-size;
 }
 
-.CodeMirror {
-  font-family: 'Inconsolata' !important;
-  font-size: 20px !important;
+.margin-0 {
+  margin: 0 !important;
 }
 
-.cm-s-mdn-like .cm-property.cm-string {
-  color: #905 !important;
-  font-style: normal !important;
-}
-
-.cm-s-mdn-like .cm-string {
-  color: #07a !important;
-  font-style: normal !important;
+.height-32 {
+  height: 32px;
 }
 
 // injector
@@ -35,5 +42,6 @@ body, html {
 @import 'admin/admin.scss';
 @import 'main/main.scss';
 @import '../components/modal/modal.scss';
+@import '../components/navbar/navbar.scss';
 @import '../components/object-viewer/object-viewer.scss';
 // endinjector

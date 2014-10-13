@@ -8,18 +8,15 @@
 'use strict'
 
 ###
-@module {Controller} CollapseCtrl
+
 ###
 angular.module 'jsonifyApp'
-.controller 'CollapseCtrl', ($scope) ->
-  $scope.isCollapsed = false
-
-  $scope.$on 'on-collapse-all', () ->
-    $scope.isCollapsed = true
-    return
-
-  $scope.$on 'on-expand-all', () ->
-    $scope.isCollapsed = false
-    return
-
-  return
+.factory 'MainRepository', ($resource) ->
+  return $resource '/api/json/:jsonId', null, {
+    'get': {
+      'method': 'get'
+    },
+    'post': {
+      'method': 'post'
+    }
+  }

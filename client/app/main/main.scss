@@ -1,0 +1,45 @@
+.CodeMirror {
+  font-family: 'Inconsolata' !important;
+  font-size: 20px !important;
+  line-height: 1.5em;
+  border-right: 1px solid #dde4e9;
+  border-top: 1px solid #dde4e9;
+  border-bottom: 1px solid #dde4e9;
+  height: 600px;
+}
+
+.cm-s-mdn-like.CodeMirror {
+  background: #fafbfc url("../assets/images/blueprint-dark.png") top center;
+}
+
+.cm-s-mdn-like .cm-property.cm-string {
+  color: $property-color;
+  font-style: normal !important;
+}
+
+.cm-s-mdn-like .cm-string {
+  color: $string-color;
+  font-style: normal !important;
+}
+
+.CodeMirror-linenumber {
+  font-size: 14px;
+  padding-top: 1px;
+  font-weight: bold;
+}
+
+.cm-s-mdn-like .CodeMirror-gutters {
+  background: none;
+  border-right: 0px !important;
+}
+
+footer {
+  color: gray;
+  font-size: 12px;
+  margin-top: 10px;
+
+  small {
+    display: block;
+    margin-top: 5px;
+  }
+}

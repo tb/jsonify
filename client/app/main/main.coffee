@@ -4,6 +4,6 @@ angular.module 'jsonifyApp'
 .config ($stateProvider) ->
   $stateProvider
   .state 'main',
-    url: '/'
+    url: '/:jsonId'
     templateUrl: 'app/main/main.html'
     controller: 'MainCtrl'

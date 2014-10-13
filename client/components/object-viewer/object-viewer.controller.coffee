@@ -17,4 +17,20 @@ angular.module 'jsonifyApp'
   $scope.isObject = ObjectViewer.isObject
   $scope.isArray = ObjectViewer.isArray
   $scope.isFunction = ObjectViewer.isFunction
-  $scope.getName = ObjectViewer.getName
+  $scope.getTypeName = ObjectViewer.getTypeName
+  $scope.getValueCount = ObjectViewer.getValueCount
+  $scope.getTypeAndCount = (obj) ->
+    if (ObjectViewer.getTypeName obj) is 'Array'
+      return '[' + (ObjectViewer.getValueCount obj) + ']'
+    else if (ObjectViewer.getTypeName obj) is 'Object'
+      return '{' + (ObjectViewer.getValueCount obj) + '}'
+    else
+      return ''
+
+  $scope.expandAll = () ->
+    $scope.$broadcast 'on-expand-all'
+    return
+
+  $scope.collapseAll = () ->
+    $scope.$broadcast 'on-collapse-all'
+    return

@@ -15,7 +15,7 @@ Controller for the main page
 @return {Object}
 ###
 angular.module 'jsonifyApp'
-.controller 'MainCtrl', ($scope, JSONUtil) ->
+.controller 'MainCtrl', ($scope, $stateParams, $location, JSONUtil, MainRepository) ->
 
   ###
   Reference to the CodeMirror Object
@@ -24,6 +24,7 @@ angular.module 'jsonifyApp'
   @private
   ###
   editorInstance = undefined
+  jsonId = undefined
 
   ###
   Initializes the jsonify main page
@@ -31,7 +32,19 @@ angular.module 'jsonifyApp'
   @private
   ###
   initialize = () ->
-    $scope.myJSON = ''
+
+    $scope.showJSONMenu = true
+
+    jsonId = $stateParams.jsonId
+    if jsonId
+      MainRepository.get(jsonId: jsonId).$promise.then((response) ->
+        $scope.myJSON = response.json
+        return
+      ).catch (e) ->
+        $location.path '/'
+        return
+    else
+      $scope.myJSON = ''
 
     $scope.editorOptions = {
       lineWrapping: false
@@ -55,7 +68,7 @@ angular.module 'jsonifyApp'
       $scope.isValid = is_valid
       $scope.json_obj = json_obj
       $scope.errorMessage = if error then error.name
-
+      return
     return
 
   ###
@@ -79,6 +92,27 @@ angular.module 'jsonifyApp'
     editorInstance.setValue JSONUtil.formatJSON $scope.myJSON
     return
 
+  saveJSON = () ->
+    if $scope.isValid is true
+      MainRepository.post({json: $scope.myJSON}).$promise.then((response) ->
+        $location.url ('/' + response._id)
+        return
+      ).catch (e) ->
+        alert e.status
+        return
+    else
+      alert 'Invalid JSON'
+
+  newJSON = () ->
+    MainRepository.post({json: ''}).$promise.then((response) ->
+      $location.url ('/' + response._id)
+      return
+    ).catch (e) ->
+      alert e.status
+      return
+
   initialize();
 
   $scope.onCodemirrorLoaded = onCodemirrorLoaded
+  $scope.save = saveJSON
+  $scope.new = newJSON

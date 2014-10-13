@@ -1,15 +1,25 @@
 <div ng-controller="CollapseCtrl">
-  <div ng-click="isCollapsed = !isCollapsed">
-    <span>{{key}} {{}}</span>
-    <span>{{getName(value)}}</span>
+  <div ng-click="isCollapsed = !isCollapsed" role="button" class="collapse-toggle">
+    <span class="object-icon">
+      <span ng-if="getValueCount(value) > 0 && isCollapsed"><i class="fa fa-caret-right"></i></span>
+      <span ng-if="getValueCount(value) > 0 && !isCollapsed"><i class="fa fa-caret-down"></i></span>
+    </span>
+    <span class="object-name">{{key}}</span>
+    <span>:</span>
+    <span class="object-value" ng-switch="getTypeName(value)">
+      <span ng-switch-when="Object" class="object-value">
+        <span class="object-type">{{getTypeAndCount(value)}}</span>
+      </span>
+      <span ng-switch-when="Array" class="object-value">
+        <span class="object-type">{{getTypeAndCount(value)}}</span>
+      </span>
+      <span ng-switch-when="String" class="string-value">"{{value}}"</span>
+      <span ng-switch-when="Number" class="number-value">{{value}}</span>
+    </span>
   </div>
   <div collapse="isCollapsed">
     <ul ng-if="isObject(value)">
       <li ng-repeat="(key, value) in value" ng-include="'components/object-viewer/recursive-object-viewer.html'">
-      </li>
-    </ul>
-    <ul ng-if="isArray(value)">
-      <li ng-repeat="val in value" ng-include="'components/object-viewer/recursive-object-viewer.html'">
       </li>
     </ul>
   </div>

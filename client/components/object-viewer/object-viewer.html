@@ -1,14 +1,31 @@
 <div ng-controller="ObjectViewerCtrl">
+
   <div class="row">
-    <div class="col-xs-12">
-      <h2>OBJECT VIEWER</h2>
+    <div class="col-xs-12 text-right height-32">
+
+      <ul class="list-inline">
+
+        <li>
+          <a href="javascript:void(0);" ng-click="expandAll()">
+            Expand All
+          </a>
+        </li>
+
+        <li>
+          <a href="javascript:void(0);" ng-click="collapseAll()">
+            Collapse All
+          </a>
+        </li>
+
+      </ul>
+
     </div>
   </div>
 
   <div class="row">
     <div class="col-xs-12">
 
-      <ul>
+      <ul class="object-viewer">
         <li ng-repeat="(key, value) in json_obj"
             ng-include="'components/object-viewer/recursive-object-viewer.html'">
         </li>
