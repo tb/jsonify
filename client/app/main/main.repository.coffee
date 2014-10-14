@@ -14,9 +14,11 @@ angular.module 'jsonifyApp'
 .factory 'MainRepository', ($resource) ->
   return $resource '/api/json/:jsonId', null, {
     'get': {
-      'method': 'get'
+      'method': 'get',
+      'cache': false
     },
     'post': {
-      'method': 'post'
+      'method': 'post',
+      'cache': false
     }
   }
