@@ -43,6 +43,7 @@ exports.create = function (req, res) {
       if (!json) {
         return res.send(404);
       }
+      json.json = req.body.json;
       json.save(function (err) {
         if (err) {
           return handleError(res, err);

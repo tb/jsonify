@@ -15,7 +15,7 @@ Controller for the main page
 @return {Object}
 ###
 angular.module 'jsonifyApp'
-.controller 'MainCtrl', ($scope, $stateParams, $location, JSONUtil, MainRepository) ->
+.controller 'MainCtrl', ($scope, $stateParams, $modal, $location, JSONUtil, MainRepository) ->
 
   ###
   Reference to the CodeMirror Object
@@ -32,7 +32,6 @@ angular.module 'jsonifyApp'
   @private
   ###
   initialize = () ->
-
     $scope.showJSONMenu = true
 
     jsonId = $stateParams.jsonId
@@ -94,8 +93,10 @@ angular.module 'jsonifyApp'
 
   saveJSON = () ->
     if $scope.isValid is true
-      MainRepository.post({json: $scope.myJSON}).$promise.then((response) ->
+      params = if jsonId then {jsonId: jsonId} else null
+      MainRepository.post(params, {json: $scope.myJSON}).$promise.then((response) ->
         $location.url ('/' + response._id)
+        showSuccessModal response._id
         return
       ).catch (e) ->
         alert e.status
@@ -106,6 +107,7 @@ angular.module 'jsonifyApp'
   newJSON = () ->
     MainRepository.post({json: ''}).$promise.then((response) ->
       $location.url ('/' + response._id)
+      showSuccessModal response._id
       return
     ).catch (e) ->
       alert e.status
@@ -113,6 +115,19 @@ angular.module 'jsonifyApp'
 
   request = () ->
     alert 'This feature is being developed right now. Please check back later.'
+
+  showSuccessModal = (json_id) ->
+    modal = $modal.open({
+      templateUrl: 'components/save-success-modal/save-success-modal.html',
+      controller: 'SaveSuccessModalCtrl',
+      resolve: {
+        jsonId: () ->
+          return json_id
+        dismiss: () ->
+          return () ->
+            modal.dismiss()
+      }
+    })
 
   initialize();
 
