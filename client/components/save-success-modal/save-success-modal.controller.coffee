@@ -14,5 +14,3 @@ angular.module 'jsonifyApp'
   $scope.jsonId = jsonId
   $scope.close = () ->
     dismiss()
-
-  console.log jsonId

@@ -5,16 +5,15 @@
   <div class="row" ng-if="isValid && !errorMessage && myJSON.length > 0">
     <div class="col-md-12">
       <alert type="success">
-        JSON Validated!
+        <strong>Valid!</strong> Your JSON has been formatted and validated.
       </alert>
     </div>
   </div>
 
-
   <div class="row" ng-if="isValid && !errorMessage && myJSON.length == 0">
     <div class="col-md-12">
       <alert type="warning">
-        Please enter JSON.
+        <strong>Welcome!</strong> Please enter or copy and paste JSON. Your JSON will be formatted and validated on blur.
       </alert>
     </div>
   </div>
@@ -22,7 +21,7 @@
   <div class="row" ng-if="!isValid">
     <div class="col-md-12">
       <alert type="danger">
-        Error! {{errorMessage}}.
+        <strong>Error!</strong> Your JSON is invalid. Please hover over the red underline for more information.
       </alert>
     </div>
   </div>
@@ -32,11 +31,19 @@
 
       <div class="row">
         <div class="col-xs-12 text-right">
-          <div class="checkbox margin-0 height-32">
+
+          <div class="checkbox margin-top-bottom-0 height-32 inline-block">
+            <label>
+              <input type="checkbox"/> Disable Auto-format
+            </label>
+          </div>
+
+          <div class="checkbox  margin-top-bottom-0 height-32 inline-block margin-left-10">
             <label>
               <input type="checkbox"/> Word Wrap
             </label>
           </div>
+
         </div>
       </div>
 
@@ -57,6 +64,7 @@
     </div>
 
   </div>
+
 </div>
 
 <footer class="container-fluid">

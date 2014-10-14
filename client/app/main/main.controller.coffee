@@ -33,6 +33,7 @@ angular.module 'jsonifyApp'
   ###
   initialize = () ->
     $scope.showJSONMenu = true
+    $scope.hasChanged = false
 
     jsonId = $stateParams.jsonId
     if jsonId
@@ -52,6 +53,8 @@ angular.module 'jsonifyApp'
       mode: "application/json"
       lineNumbers: true
       theme: 'mdn-like'
+      gutters: ['CodeMirror-lint-markers']
+      lint: true
     }
 
     $scope.$watch 'myJSON', onJSONChanged
@@ -63,6 +66,8 @@ angular.module 'jsonifyApp'
   @private
   ###
   onJSONChanged = () ->
+    $scope.hasChanged = true
+
     JSONUtil.validateJSON $scope.myJSON, (is_valid, error, json_obj) ->
       $scope.isValid = is_valid
       $scope.json_obj = json_obj
@@ -88,7 +93,12 @@ angular.module 'jsonifyApp'
   @private
   ###
   autoFormat = () ->
-    editorInstance.setValue JSONUtil.formatJSON $scope.myJSON
+    if $scope.hasChanged is false then return
+
+    JSONUtil.validateJSON $scope.myJSON, (is_valid) ->
+      if is_valid
+        $scope.hasChanged = false
+        editorInstance.setValue JSONUtil.formatJSON $scope.myJSON
     return
 
   saveJSON = () ->
@@ -120,13 +130,12 @@ angular.module 'jsonifyApp'
     modal = $modal.open({
       templateUrl: 'components/save-success-modal/save-success-modal.html',
       controller: 'SaveSuccessModalCtrl',
-      resolve: {
+      resolve:
         jsonId: () ->
           return json_id
         dismiss: () ->
           return () ->
             modal.dismiss()
-      }
     })
 
   initialize();
