@@ -22,3 +22,11 @@ Thanks for your interest in contributing to JSONIFY. Please feel free to contact
 8. Run ```npm install``` from the project root.
 9. Run ```bower install``` from the project root.
 10. Run the project by running grunt ```grunt serve```
+
+## Project Structure
+
+The project was scaffolded using Yeoman.
+
+In Client folder, if you code is specific to a single page, it should go under app/ folder, and if it's a reusuable component, it should go under components/ folder.
+
+Please update the update log at the top of each file. (Make one if does not exist!)
