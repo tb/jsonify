@@ -1,6 +1,6 @@
 # Getting Started
 
-Thanks for your interest in contributing to JSONIFY.
+Thanks for your interest in contributing to JSONIFY. Please feel free to contact me if you need help getting started.
 
 ## Requirements
 
