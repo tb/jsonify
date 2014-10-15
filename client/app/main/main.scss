@@ -37,6 +37,15 @@
   left: 10px !important;
 }
 
+.CodeMirror-lint-tooltip {
+  font-family: 'Inconsolata';
+  font-size: 16px;
+  color: #a94442;
+  border-color: #ebccd1;
+  background-color: #f2dede;
+  padding: 10px;
+}
+
 footer {
   color: gray;
   font-size: 12px;
