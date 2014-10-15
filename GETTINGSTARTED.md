@@ -27,6 +27,8 @@ Thanks for your interest in contributing to JSONIFY. Please feel free to contact
 
 The project was scaffolded using Yeoman.
 
-In Client folder, if you code is specific to a single page, it should go under app/ folder, and if it's a reusuable component, it should go under components/ folder.
+The client/ folder should be used for client side code. If your code is specific to a single page, place it under the app/ folder, and if your code is a reusuable component, place it under components/ folder.
+
+Create a folder with a name clearly identifying the intent of the code, and put all related resources under the same folder.
 
 Please update the update log at the top of each file. (Make one if does not exist!)
