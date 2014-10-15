@@ -11,7 +11,7 @@ Please star this repository and read [Getting Started Document] to start contrib
 You can find the list of the contributors [here].
 
 ## Special Thanks To...
-JSONify.io is powered by the MEAN([Mongo], [ExpressJS], [AngularJS], [NodeJS]) stack, [CodeMirror], and [Amazon EC2].
+JSONify.io is powered by the MEAN([Mongo], [ExpressJS], [AngularJS], [NodeJS]) stack, [CodeMirror], [Grunt], [Yeoman], and [Amazon EC2].
 
 [Getting Started Document]: https://github.com/WonSong/jsonify/blob/master/GETTINGSTARTED.md
 [here]: https://github.com/WonSong/jsonify/blob/master/CONTRIBUTORS.md
@@ -21,3 +21,5 @@ JSONify.io is powered by the MEAN([Mongo], [ExpressJS], [AngularJS], [NodeJS]) s
 [NodeJS]: http://nodejs.org/
 [CodeMirror]: http://codemirror.net/
 [Amazon EC2]: http://aws.amazon.com/ec2/
+[Grunt]: http://gruntjs.com
+[Yeoman]: yeoman.io
