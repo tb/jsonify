@@ -7,6 +7,9 @@ I started this project because I wanted to simplify the above process. JSONify.i
 Think this tool could help your development process?
 Please star this repository and read [Getting Started Document] to start contributing.
 
-JSONify.io is powered by the MEAN stack, CodeMirror, and Amazon EC2.
+You can find the list of the contributors [here].
+
+JSONify.io is powered by the MEAN(Mongo, ExpressJS, AngularJS, NodeJS) stack, CodeMirror, and Amazon EC2.
 
 [Getting Started Document]: https://github.com/WonSong/jsonify/blob/master/GETTINGSTARTED.md
+[here]: https://github.com/WonSong/jsonify/blob/master/CONTRIBUTORS.md
