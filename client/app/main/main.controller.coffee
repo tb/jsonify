@@ -68,7 +68,8 @@ angular.module 'jsonifyApp'
       mode: "application/json"
       lineNumbers: true
       theme: 'mdn-like'
-      gutters: ['CodeMirror-lint-markers']
+      gutters: ['CodeMirror-lint-markers', 'CodeMirror-linenumbers', "CodeMirror-foldgutter"]
+      foldGutter: true
       lint: true
     }
 
