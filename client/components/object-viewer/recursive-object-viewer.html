@@ -21,7 +21,7 @@
   </div>
   <div fast-collapse="isCollapsed">
     <ul ng-if="isObject(value)">
-      <li ng-repeat="(key, value) in value" ng-include="'components/object-viewer/recursive-object-viewer.html'">
+      <li ng-repeat="(key, value) in value track by $index" ng-include="'components/object-viewer/recursive-object-viewer.html'">
       </li>
     </ul>
   </div>
