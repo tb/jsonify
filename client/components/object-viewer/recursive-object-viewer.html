@@ -19,7 +19,7 @@
       <span ng-switch-default>null</span>
     </span>
   </div>
-  <div collapse="isCollapsed">
+  <div fast-collapse="isCollapsed">
     <ul ng-if="isObject(value)">
       <li ng-repeat="(key, value) in value" ng-include="'components/object-viewer/recursive-object-viewer.html'">
       </li>
