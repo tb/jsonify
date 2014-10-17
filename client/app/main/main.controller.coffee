@@ -182,6 +182,18 @@ angular.module 'jsonifyApp'
         return
     return
 
+  ###
+  On click on the format button, set the autoFormat option to true and run the onAutoFormatChange
+  function.
+  @method onFormatRequest
+  ###
+  onFormatRequest = () ->
+    JSONUtil.validateJSON $scope.myJSON, (isValid) ->
+      if isValid is true
+        $scope.model.options.autoFormat = true;
+        onAutoFormatChange()
+    return
+
   initialize();
 
   $scope.onCodemirrorLoaded = onCodemirrorLoaded
@@ -191,3 +203,4 @@ angular.module 'jsonifyApp'
   $scope.share = request;
   $scope.onAutoFormatChange = onAutoFormatChange;
   $scope.onMinifyRequest = onMinifyRequest;
+  $scope.onFormatRequest = onFormatRequest;
