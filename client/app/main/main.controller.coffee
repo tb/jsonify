@@ -3,6 +3,9 @@
 # ==========================================================================
 # 10/11/2014 - WonSong (http://wys.io)
 # - Created initial file.
+# --------------------------------------------------------------------------
+# 10/15/2014 - Won Song (http://wys.io)
+# - Added auto format toggle functionality.
 # ==========================================================================
 
 'use strict'
@@ -32,9 +35,20 @@ angular.module 'jsonifyApp'
   @private
   ###
   initialize = () ->
+
+    ###
+    ViewModel containing important data objects and options objects used in jsonify.
+    All scope objects that are not in this model object will be moved here in the near future.
+    @property model
+    @type {Object}
+    ###
+    $scope.model = {
+      options:
+        autoFormat: true
+    }
+
     $scope.showJSONMenu = true
     $scope.hasChanged = false
-    $scope.doAutoFormat = false;
 
     jsonId = $stateParams.jsonId
     if jsonId
@@ -54,7 +68,8 @@ angular.module 'jsonifyApp'
       mode: "application/json"
       lineNumbers: true
       theme: 'mdn-like'
-      gutters: ['CodeMirror-lint-markers']
+      gutters: ['CodeMirror-lint-markers', 'CodeMirror-linenumbers', "CodeMirror-foldgutter"]
+      foldGutter: true
       lint: true
     }
 
@@ -78,7 +93,7 @@ angular.module 'jsonifyApp'
 
   ###
   Callback when the CodeMirror is initialized. Stores the {_editor} object to editorInstance variable.
-  Registers autoFormat event on focus out
+  By default autoFormat should be enabled. This method registers autoFormat event on focus out
   @method onCodemirrorLoader
   @param _editor {Object} Initialized CodeMirror object
   @private
@@ -94,15 +109,13 @@ angular.module 'jsonifyApp'
   @private
   ###
   autoFormat = () ->
-    if $scope.doAutoFormat is false then return
-    if $scope.hasChanged is false then return
+    if $scope.hasChanged is false or $scope.model.options.autoFormat is false then return
 
     JSONUtil.validateJSON $scope.myJSON, (is_valid) ->
       if is_valid
         $scope.hasChanged = false
-        $scope.myJSON = JSONUtil.formatJSON $scope.myJSON
+        editorInstance.setValue JSONUtil.formatJSON $scope.myJSON
     return
-    true
 
   saveJSON = () ->
     if $scope.isValid is true
@@ -141,18 +154,13 @@ angular.module 'jsonifyApp'
             modal.dismiss()
     })
 
-  minimizeJSON = () ->
-    if $scope.isValid is true
-      $scope.myJSON = JSONUtil.minifyJSON $scope.myJSON;
-      $scope.doAutoFormat = false;
-    true;
+  ###
+  On click on the auto format checkbox, if autoFormat option is set to true, trigger auto format
+  @method onAutoFormatChange
+  ###
+  onAutoFormatChange = () ->
+    autoFormat() if $scope.model.options.autoFormat is true
 
-
-  formatJSON = () ->
-    if $scope.isValid is true
-      $scope.doAutoFormat = true;
-      $scope.autoFormat()
-    true;
   initialize();
 
   $scope.onCodemirrorLoaded = onCodemirrorLoaded
@@ -160,6 +168,4 @@ angular.module 'jsonifyApp'
   $scope.new = newJSON
   $scope.request = request;
   $scope.share = request;
-  $scope.minimizeJSON = minimizeJSON;
-  $scope.autoFormat = autoFormat;
-  $scope.formatJSON = formatJSON;
+  $scope.onAutoFormatChange = onAutoFormatChange;

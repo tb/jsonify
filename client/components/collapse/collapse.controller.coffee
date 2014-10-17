@@ -12,7 +12,7 @@
 ###
 angular.module 'jsonifyApp'
 .controller 'CollapseCtrl', ($scope) ->
-  $scope.isCollapsed = false
+  $scope.isCollapsed = true
 
   $scope.$on 'on-collapse-all', () ->
     $scope.isCollapsed = true

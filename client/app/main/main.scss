@@ -33,10 +33,6 @@
   border-right: 0px !important;
 }
 
-.CodeMirror-gutter-elt {
-  left: 10px !important;
-}
-
 .CodeMirror-lint-tooltip {
   font-family: 'Inconsolata';
   font-size: 16px;
@@ -44,6 +40,18 @@
   border-color: #ebccd1;
   background-color: #f2dede;
   padding: 10px;
+}
+
+.CodeMirror-lint-marker-error {
+  padding-left: 32px;
+}
+
+.CodeMirror-linenumber.CodeMirror-gutter-elt {
+  left: 20px;
+}
+
+.CodeMirror-guttermarker-subtle {
+  padding-left: 8px;
 }
 
 footer {
