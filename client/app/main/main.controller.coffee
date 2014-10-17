@@ -6,6 +6,14 @@
 # --------------------------------------------------------------------------
 # 10/15/2014 - Won Song (http://wys.io)
 # - Added auto format toggle functionality.
+# --------------------------------------------------------------------------
+# 10/16/2014 - Bill Weithers
+# - added minification functionality.
+# - found an error when using the editorInstance.setValue method - the
+# $scope.myJSON value is not updated when this is used and when the
+# contents of the editor is changed when auto focus is off and then
+# auto focus is turned back on.
+# - will need to style the button correctly.
 # ==========================================================================
 
 'use strict'
@@ -161,6 +169,19 @@ angular.module 'jsonifyApp'
   onAutoFormatChange = () ->
     autoFormat() if $scope.model.options.autoFormat is true
 
+  ###
+  On click on the minify button, trigger the JSONUtils.minify(object) method and reset the current
+  JSON string and turn auto format off.
+  @method onMinifyRequest
+  ###
+  onMinifyRequest = () ->
+    JSONUtil.validateJSON $scope.myJSON, (isValid) ->
+      if isValid is true
+        $scope.model.options.autoFormat = false
+        $scope.myJSON = JSONUtil.minifyJSON $scope.myJSON
+        return
+    return
+
   initialize();
 
   $scope.onCodemirrorLoaded = onCodemirrorLoaded
@@ -169,3 +190,4 @@ angular.module 'jsonifyApp'
   $scope.request = request;
   $scope.share = request;
   $scope.onAutoFormatChange = onAutoFormatChange;
+  $scope.onMinifyRequest = onMinifyRequest;
