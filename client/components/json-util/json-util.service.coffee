@@ -34,7 +34,7 @@ angular.module 'jsonifyApp'
   @return {String} minified JSON string
   ###
   minifyJSON: (json) ->
-    return json.replace /\s/g, ''
+    return json.replace /\s(?!(\b))/g, ''
 
   ###
   Validates the JSON string

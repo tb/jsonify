@@ -34,6 +34,7 @@ angular.module 'jsonifyApp'
   initialize = () ->
     $scope.showJSONMenu = true
     $scope.hasChanged = false
+    $scope.doAutoFormat = false;
 
     jsonId = $stateParams.jsonId
     if jsonId
@@ -93,13 +94,15 @@ angular.module 'jsonifyApp'
   @private
   ###
   autoFormat = () ->
+    if $scope.doAutoFormat is false then return
     if $scope.hasChanged is false then return
 
     JSONUtil.validateJSON $scope.myJSON, (is_valid) ->
       if is_valid
         $scope.hasChanged = false
-        editorInstance.setValue JSONUtil.formatJSON $scope.myJSON
+        $scope.myJSON = JSONUtil.formatJSON $scope.myJSON
     return
+    true
 
   saveJSON = () ->
     if $scope.isValid is true
@@ -138,6 +141,18 @@ angular.module 'jsonifyApp'
             modal.dismiss()
     })
 
+  minimizeJSON = () ->
+    if $scope.isValid is true
+      $scope.myJSON = JSONUtil.minifyJSON $scope.myJSON;
+      $scope.doAutoFormat = false;
+    true;
+
+
+  formatJSON = () ->
+    if $scope.isValid is true
+      $scope.doAutoFormat = true;
+      $scope.autoFormat()
+    true;
   initialize();
 
   $scope.onCodemirrorLoaded = onCodemirrorLoaded
@@ -145,3 +160,6 @@ angular.module 'jsonifyApp'
   $scope.new = newJSON
   $scope.request = request;
   $scope.share = request;
+  $scope.minimizeJSON = minimizeJSON;
+  $scope.autoFormat = autoFormat;
+  $scope.formatJSON = formatJSON;
