@@ -163,23 +163,15 @@ angular.module 'jsonifyApp'
     })
 
   ###
-  On click on the auto format checkbox, if autoFormat option is set to true, trigger auto format
-  @method onAutoFormatChange
-  ###
-  onAutoFormatChange = () ->
-    autoFormat() if $scope.model.options.autoFormat is true
-
-  ###
   On click on the minify button, trigger the JSONUtils.minify(object) method and reset the current
   JSON string and turn auto format off.
   @method onMinifyRequest
   ###
   onMinifyRequest = () ->
     JSONUtil.validateJSON $scope.myJSON, (isValid) ->
-      if isValid is true
-        $scope.model.options.autoFormat = false
-        $scope.myJSON = JSONUtil.minifyJSON $scope.myJSON
-        return
+      $scope.model.options.autoFormat = false;
+      $scope.myJSON = JSONUtil.minifyJSON $scope.myJSON if isValid is true
+      return
     return
 
   ###
@@ -189,9 +181,8 @@ angular.module 'jsonifyApp'
   ###
   onFormatRequest = () ->
     JSONUtil.validateJSON $scope.myJSON, (isValid) ->
-      if isValid is true
-        $scope.model.options.autoFormat = true;
-        onAutoFormatChange()
+      $scope.myJSON = JSONUtil.formatJSON $scope.myJSON if isValid is true
+      return
     return
 
   initialize();
@@ -201,6 +192,5 @@ angular.module 'jsonifyApp'
   $scope.new = newJSON
   $scope.request = request;
   $scope.share = request;
-  $scope.onAutoFormatChange = onAutoFormatChange;
   $scope.onMinifyRequest = onMinifyRequest;
   $scope.onFormatRequest = onFormatRequest;

@@ -21,6 +21,15 @@ $editor-background: #fafbfc url("http://wys.io/assets/images/blueprint-dark.png"
 $number-color: #ca7841 !important;
 
 /* =========================================================================
+BOOTSTRAP OVERRIDES
+========================================================================= */
+
+label.checkbox-label {
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+/* =========================================================================
 GLOBAL STYLES
 ========================================================================= */
 body, html {
@@ -48,6 +57,10 @@ body, html {
 
 .inline-block {
   display: inline-block !important;
+}
+
+.vertical-align-top {
+  vertical-align: top;
 }
 
 // injector

@@ -2,93 +2,103 @@
 
 <div class="container-fluid">
 
-    <div class="row" ng-if="isValid && !errorMessage && myJSON.length > 0">
-        <div class="col-md-12">
-            <alert type="success">
-                <strong>Valid!</strong> Your JSON has been formatted and validated.
-            </alert>
-        </div>
+  <div class="row" ng-if="isValid && !errorMessage && myJSON.length > 0">
+    <div class="col-md-12">
+      <alert type="success">
+        <strong>Valid!</strong> Your JSON has been formatted and validated.
+      </alert>
     </div>
+  </div>
 
-    <div class="row" ng-if="isValid && !errorMessage && myJSON.length == 0">
-        <div class="col-md-12">
-            <alert type="warning">
-                <strong>Welcome!</strong> Please enter or copy and paste JSON. Your JSON will be formatted and validated
-                on blur.
-            </alert>
-        </div>
+  <div class="row" ng-if="isValid && !errorMessage && myJSON.length == 0">
+    <div class="col-md-12">
+      <alert type="warning">
+        <strong>Welcome!</strong> Please enter or copy and paste JSON. Your JSON will be formatted and validated
+        on blur.
+      </alert>
     </div>
+  </div>
 
-    <div class="row" ng-if="!isValid">
-        <div class="col-md-12">
-            <alert type="danger">
-                <strong>Error!</strong> Your JSON is invalid. Please hover over the red underline for more information.
-            </alert>
-        </div>
+  <div class="row" ng-if="!isValid">
+    <div class="col-md-12">
+      <alert type="danger">
+        <strong>Error!</strong> Your JSON is invalid. Please hover over the red underline for more information.
+      </alert>
     </div>
+  </div>
 
-    <div class="row">
+  <div class="row">
+    <div class="col-md-6">
+
+      <div class="row">
         <div class="col-md-6">
 
-            <div class="row">
-                <div class="col-xs-12 text-right">
-
-                    <div class="margin-top-bottom-0 height-32 inline-block">
-                        <button class="btn" ng-click="onMinifyRequest()">Minify</button>
-                    </div>
-
-                    <div class="margin-top-bottom-0 height-32 inline-block">
-                        <button class="btn" ng-click="onFormatRequest()">Format</button>
-                    </div>
-                    <div class="checkbox margin-top-bottom-0 height-32 inline-block">
-                        <label>
-                            <input type="checkbox" ng-model="model.options.autoFormat"
-                                   ng-change="onAutoFormatChange()"/> Auto-format
-                        </label>
-                    </div>
-
-                    <div class="checkbox  margin-top-bottom-0 height-32 inline-block margin-left-10">
-                        <label>
-                            <input type="checkbox"/> Word Wrap
-                        </label>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-12">
-
-                    <div ui-codemirror="{onLoad: onCodemirrorLoaded}" ui-codemirror-opts="editorOptions"
-                         ng-model="myJSON"></div>
-
-                </div>
-            </div>
-
+          <ul class="list-inline">
+            <li>
+              <a href="javascript:void(0);" ng-click="onMinifyRequest()" role="button"
+                 popover="Click to minify JSON and turn off Auto Format."
+                 popover-trigger="mouseenter" popover-placement="right"><i class="fa fa-outdent"></i> Minify</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" ng-click="onFormatRequest()" role="button"
+                 popover="Click to format JSON."
+                 popover-trigger="mouseenter" popover-placement="right"><i class="fa fa-indent"></i> Format</a>
+            </li>
+          </ul>
         </div>
 
         <div class="col-md-6">
 
-            <div ng-include="'components/object-viewer/object-viewer.html'"></div>
+          <ul class="list-inline text-right">
+            <li>
+              <label class="checkbox-label">
+                <input type="checkbox" ng-model="model.options.autoFormat"/> Auto-format
+              </label>
+            </li>
+            <li>
+              <label class="checkbox-label">
+                <input type="checkbox"/> Word Wrap
+              </label>
+            </li>
+          </ul>
 
         </div>
 
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div ui-codemirror="{onLoad: onCodemirrorLoaded}" ui-codemirror-opts="editorOptions"
+               ng-model="myJSON"></div>
+
+        </div>
+      </div>
+
     </div>
+
+    <div class="col-md-6">
+
+      <div ng-include="'components/object-viewer/object-viewer.html'"></div>
+
+    </div>
+
+  </div>
 
 </div>
 
 <footer class="container-fluid">
-    <div class="row">
-        <div class="col-xs-12 text-right">
-            <p>
-                Project by <a href="http://wys.io">Won Song</a> and <a
-                    href="https://github.com/WonSong/jsonify/blob/master/CONTRIBUTORS.md">contributors</a>
-                <br/>
-                <small>
-                    "Unlimited Ideas and an Uncontrollable Urge to Code"<br/>
-                    Visit me at <a href="http://wys.io">http://wys.io</a>
-                </small>
-            </p>
-        </div>
+  <div class="row">
+    <div class="col-xs-12 text-right">
+      <p>
+        Project by <a href="http://wys.io">Won Song</a> and <a
+        href="https://github.com/WonSong/jsonify/blob/master/CONTRIBUTORS.md">contributors</a>
+        <br/>
+        <small>
+          "Unlimited Ideas and an Uncontrollable Urge to Code"<br/>
+          Visit me at <a href="http://wys.io">http://wys.io</a>
+        </small>
+      </p>
     </div>
+  </div>
 </footer>
