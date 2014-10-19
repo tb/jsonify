@@ -49,7 +49,8 @@
 
                     <div class="checkbox  margin-top-bottom-0 height-32 inline-block margin-left-10">
                         <label>
-                            <input type="checkbox"/> Word Wrap
+                            <input type="checkbox" ng-model="model.options.codeWrap"
+                                    ng-change="onCodeWrapTrigger()"/> Code Wrap
                         </label>
                     </div>
 

@@ -170,6 +170,13 @@ angular.module 'jsonifyApp'
     autoFormat() if $scope.model.options.autoFormat is true
 
   ###
+
+  @method onCodeWrapChange
+  ###
+  onCodeWrapChange = () ->
+    editorInstance.setOption('lineWrapping', $scope.model.options.codeWrap);
+
+  ###
   On click on the minify button, trigger the JSONUtils.minify(object) method and reset the current
   JSON string and turn auto format off.
   @method onMinifyRequest
@@ -194,6 +201,10 @@ angular.module 'jsonifyApp'
         onAutoFormatChange()
     return
 
+  onCodeWrapTrigger = () ->
+    onCodeWrapChange();
+    return
+
   initialize();
 
   $scope.onCodemirrorLoaded = onCodemirrorLoaded
@@ -204,3 +215,5 @@ angular.module 'jsonifyApp'
   $scope.onAutoFormatChange = onAutoFormatChange;
   $scope.onMinifyRequest = onMinifyRequest;
   $scope.onFormatRequest = onFormatRequest;
+  $scope.onCodeWrapTrigger = onCodeWrapTrigger;
+  $scope.onCodeWrapChange = onCodeWrapChange;
