@@ -199,10 +199,6 @@ angular.module 'jsonifyApp'
       return
     return
 
-  onCodeWrapTrigger = () ->
-    onCodeWrapChange();
-    return
-
   initialize();
 
   $scope.onCodemirrorLoaded = onCodemirrorLoaded
@@ -213,5 +209,4 @@ angular.module 'jsonifyApp'
   $scope.onAutoFormatChange = onAutoFormatChange;
   $scope.onMinifyRequest = onMinifyRequest;
   $scope.onFormatRequest = onFormatRequest;
-  $scope.onCodeWrapTrigger = onCodeWrapTrigger;
-  $scope.onCodeWrapChange = onCodeWrapChange;
+  $scope.onCodeWrapTrigger = onCodeWrapChange;
