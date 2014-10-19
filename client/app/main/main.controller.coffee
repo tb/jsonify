@@ -183,10 +183,9 @@ angular.module 'jsonifyApp'
   ###
   onMinifyRequest = () ->
     JSONUtil.validateJSON $scope.myJSON, (isValid) ->
-      if isValid is true
-        $scope.model.options.autoFormat = false
-        $scope.myJSON = JSONUtil.minifyJSON $scope.myJSON
-        return
+      $scope.model.options.autoFormat = false;
+      $scope.myJSON = JSONUtil.minifyJSON $scope.myJSON if isValid is true
+      return
     return
 
   ###
@@ -196,9 +195,8 @@ angular.module 'jsonifyApp'
   ###
   onFormatRequest = () ->
     JSONUtil.validateJSON $scope.myJSON, (isValid) ->
-      if isValid is true
-        $scope.model.options.autoFormat = true;
-        onAutoFormatChange()
+      $scope.myJSON = JSONUtil.formatJSON $scope.myJSON if isValid is true
+      return
     return
 
   onCodeWrapTrigger = () ->
