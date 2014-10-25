@@ -49,6 +49,7 @@ angular.module 'jsonifyApp'
       JSON: ''
       options:
         autoFormat: true
+        showJSONMenu: true
 
     jsonId = $stateParams.jsonId
     if jsonId
