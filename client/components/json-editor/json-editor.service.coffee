@@ -4,16 +4,19 @@
 # 10/11/2014 - WonSong (http://wys.io)
 # - Created initial file.
 # - Added formatJSON(), minifyJSON(), validateJSON() methods
+# --------------------------------------------------------------------------
+# 10/24/2014 - WonSong (http://wys.io)
+# - JSONUtil has been renamed to JSONEditorSVC
 # ==========================================================================
 
 'use strict'
 
 ###
 Provides utility methods for JSON operations used in the jsonify app
-@module {Service} JSONUtil
+@module {Service} JSONEditorSVC
 ###
 angular.module 'jsonifyApp'
-.factory 'JSONUtil', () ->
+.factory 'JSONEditorSVC', () ->
 
   ###
   Formats and returns {unformatted_json} string

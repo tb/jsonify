@@ -1,17 +1,20 @@
 # ==========================================================================
 # UPDATE LOG
 # ==========================================================================
-# 10/11/2014 - WonSong (http://wys.io)
+# 10/11/2014 - Won Song (http://wys.io)
 # - Created initial file.
+# --------------------------------------------------------------------------
+# 10/24/2014 - Won Song (http://wys.io)
+# - ObjectViewer has been renamed to ObjectViewerSVC
 # ==========================================================================
 
 'use strict'
 
 ###
-@module {Service} ObjectViewer
+@module {Service} ObjectViewerSVC
 ###
 angular.module 'jsonifyApp'
-.factory 'ObjectViewer', () ->
+.factory 'ObjectViewerSVC', () ->
 
   getObjectKeyCount = (obj) ->
     count = 0

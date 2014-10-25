@@ -14,6 +14,9 @@
 # contents of the editor is changed when auto focus is off and then
 # auto focus is turned back on.
 # - will need to style the button correctly.
+# --------------------------------------------------------------------------
+# 10/24/2014 - Won Song (http://wys.io)
+# - JSON Editor logic has been moved to JSONEditorCtrl and JSONEditorSVC
 # ==========================================================================
 
 'use strict'
@@ -26,15 +29,7 @@ Controller for the main page
 @return {Object}
 ###
 angular.module 'jsonifyApp'
-.controller 'MainCtrl', ($scope, $stateParams, $modal, $location, JSONUtil, MainRepository) ->
-
-  ###
-  Reference to the CodeMirror Object
-  @property editorInstance
-  @type {Object}
-  @private
-  ###
-  editorInstance = undefined
+.controller 'MainCtrl', ($scope, $stateParams, $modal, $location, MainRepository) ->
   jsonId = undefined
 
   ###
@@ -50,85 +45,24 @@ angular.module 'jsonifyApp'
     @property model
     @type {Object}
     ###
-    $scope.model = {
+    $scope.model =
+      JSON: ''
       options:
         autoFormat: true
-    }
-
-    $scope.showJSONMenu = true
-    $scope.hasChanged = false
 
     jsonId = $stateParams.jsonId
     if jsonId
       MainRepository.get(jsonId: jsonId).$promise.then((response) ->
-        $scope.myJSON = response.json
+        $scope.model.JSON = response.json
         return
       ).catch (e) ->
         $location.path '/'
         return
-    else
-      $scope.myJSON = ''
-
-    $scope.editorOptions = {
-      lineWrapping: false
-      matchBrackets: true
-      autoCloseBrackets: true
-      mode: "application/json"
-      lineNumbers: true
-      theme: 'mdn-like'
-      gutters: ['CodeMirror-lint-markers', 'CodeMirror-linenumbers', "CodeMirror-foldgutter"]
-      foldGutter: true
-      lint: true
-    }
-
-    $scope.$watch 'myJSON', onJSONChanged
-    return
-
-  ###
-  Handler for JSON change event
-  @method onJSONChanged
-  @private
-  ###
-  onJSONChanged = () ->
-    $scope.hasChanged = true
-
-    JSONUtil.validateJSON $scope.myJSON, (is_valid, error, json_obj) ->
-      $scope.isValid = is_valid
-      $scope.json_obj = json_obj
-      $scope.errorMessage = if error then error.name
-      return
-    return
-
-  ###
-  Callback when the CodeMirror is initialized. Stores the {_editor} object to editorInstance variable.
-  By default autoFormat should be enabled. This method registers autoFormat event on focus out
-  @method onCodemirrorLoader
-  @param _editor {Object} Initialized CodeMirror object
-  @private
-  ###
-  onCodemirrorLoaded = (_editor) ->
-    editorInstance = _editor
-    editorInstance.on 'blur', autoFormat
-    return
-
-  ###
-  Formats the current JSON entered by the user
-  @method autoFormat
-  @private
-  ###
-  autoFormat = () ->
-    if $scope.hasChanged is false or $scope.model.options.autoFormat is false then return
-
-    JSONUtil.validateJSON $scope.myJSON, (is_valid) ->
-      if is_valid
-        $scope.hasChanged = false
-        editorInstance.setValue JSONUtil.formatJSON $scope.myJSON
-    return
 
   saveJSON = () ->
-    if $scope.isValid is true
+    if $scope.model.isValid is true
       params = if jsonId then {jsonId: jsonId} else null
-      MainRepository.post(params, {json: $scope.myJSON}).$promise.then((response) ->
+      MainRepository.post(params, {json: $scope.model.JSON}).$promise.then((response) ->
         $location.url ('/' + response._id)
         showSuccessModal response._id
         return
@@ -162,51 +96,9 @@ angular.module 'jsonifyApp'
             modal.dismiss()
     })
 
-  ###
-  On click on the auto format checkbox, if autoFormat option is set to true, trigger auto format
-  @method onAutoFormatChange
-  ###
-  onAutoFormatChange = () ->
-    autoFormat() if $scope.model.options.autoFormat is true
-
-  ###
-
-  @method onCodeWrapChange
-  ###
-  onCodeWrapChange = () ->
-    editorInstance.setOption('lineWrapping', $scope.model.options.codeWrap);
-
-  ###
-  On click on the minify button, trigger the JSONUtils.minify(object) method and reset the current
-  JSON string and turn auto format off.
-  @method onMinifyRequest
-  ###
-  onMinifyRequest = () ->
-    JSONUtil.validateJSON $scope.myJSON, (isValid) ->
-      $scope.model.options.autoFormat = false;
-      $scope.myJSON = JSONUtil.minifyJSON $scope.myJSON if isValid is true
-      return
-    return
-
-  ###
-  On click on the format button, set the autoFormat option to true and run the onAutoFormatChange
-  function.
-  @method onFormatRequest
-  ###
-  onFormatRequest = () ->
-    JSONUtil.validateJSON $scope.myJSON, (isValid) ->
-      $scope.myJSON = JSONUtil.formatJSON $scope.myJSON if isValid is true
-      return
-    return
-
   initialize();
 
-  $scope.onCodemirrorLoaded = onCodemirrorLoaded
   $scope.save = saveJSON
   $scope.new = newJSON
   $scope.request = request;
   $scope.share = request;
-  $scope.onAutoFormatChange = onAutoFormatChange;
-  $scope.onMinifyRequest = onMinifyRequest;
-  $scope.onFormatRequest = onFormatRequest;
-  $scope.onCodeWrapTrigger = onCodeWrapChange;

@@ -12,18 +12,18 @@ Controller for the main page
 @module {Controller} ObjectViewerCtrl
 ###
 angular.module 'jsonifyApp'
-.controller 'ObjectViewerCtrl', ($scope, ObjectViewer) ->
+.controller 'ObjectViewerCtrl', ($scope, ObjectViewerSVC) ->
 
-  $scope.isObject = ObjectViewer.isObject
-  $scope.isArray = ObjectViewer.isArray
-  $scope.isFunction = ObjectViewer.isFunction
-  $scope.getTypeName = ObjectViewer.getTypeName
-  $scope.getValueCount = ObjectViewer.getValueCount
+  $scope.isObject = ObjectViewerSVC.isObject
+  $scope.isArray = ObjectViewerSVC.isArray
+  $scope.isFunction = ObjectViewerSVC.isFunction
+  $scope.getTypeName = ObjectViewerSVC.getTypeName
+  $scope.getValueCount = ObjectViewerSVC.getValueCount
   $scope.getTypeAndCount = (obj) ->
-    if (ObjectViewer.getTypeName obj) is 'Array'
-      return '[' + (ObjectViewer.getValueCount obj) + ']'
-    else if (ObjectViewer.getTypeName obj) is 'Object'
-      return '{' + (ObjectViewer.getValueCount obj) + '}'
+    if (ObjectViewerSVC.getTypeName obj) is 'Array'
+      return '[' + (ObjectViewerSVC.getValueCount obj) + ']'
+    else if (ObjectViewerSVC.getTypeName obj) is 'Object'
+      return '{' + (ObjectViewerSVC.getValueCount obj) + '}'
     else
       return ''
 

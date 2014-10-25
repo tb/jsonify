@@ -1,0 +1,48 @@
+<div ng-controller="JSONEditorCtrl">
+
+  <div class="row">
+    <div class="col-md-6">
+
+      <ul class="list-inline">
+        <li>
+          <a href="javascript:void(0);" ng-click="onMinifyRequest()" role="button"
+             popover="Click to minify JSON and turn off Auto Format."
+             popover-trigger="mouseenter" popover-placement="right"><i class="fa fa-outdent"></i> Minify</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" ng-click="onFormatRequest()" role="button"
+             popover="Click to format JSON."
+             popover-trigger="mouseenter" popover-placement="right"><i class="fa fa-indent"></i> Format</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+
+      <ul class="list-inline text-right">
+        <li>
+          <label class="checkbox-label">
+            <input type="checkbox" ng-model="model.options.autoFormat"/> Auto-format
+          </label>
+        </li>
+        <li>
+          <label class="checkbox-label">
+            <input type="checkbox" ng-model="model.options.codeWrap"
+                   ng-change="onCodeWrapTrigger()"/> Code Wrap
+          </label>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+
+      <div ui-codemirror="{onLoad: onCodemirrorLoaded}" ui-codemirror-opts="model.editorOptions"
+           ng-model="model.JSON"></div>
+
+    </div>
+  </div>
+
+</div>
