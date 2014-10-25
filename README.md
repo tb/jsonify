@@ -4,13 +4,13 @@ As a web developer, I often find myself sharing JSON data to my colleagues by em
 
 I started this project because I wanted to simplify the above process. JSONify.io allows you to share JSON data easily.
 
-## Contributing
+## How to Contribute...
 Think this tool could help your development process?
 Please star this repository and read [Getting Started Document] to start contributing.
 
 You can find the list of the contributors [here].
 
-## Special Thanks To...
+## Powered by...
 JSONify.io is powered by the MEAN([Mongo], [ExpressJS], [AngularJS], [NodeJS]) stack, [CodeMirror], [Grunt], [Yeoman], and [Amazon EC2].
 
 [Getting Started Document]: https://github.com/WonSong/jsonify/blob/master/GETTINGSTARTED.md
